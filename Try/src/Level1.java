@@ -11,6 +11,7 @@ public class Level1 extends JComponent {
 	private Square[] blocks;
 	private Random rand = new Random();
 	private int size = 25;
+	private InputHandler input = new InputHandler();
 
 	public Level1(int amount) {
 		this.amount = amount;
@@ -44,7 +45,7 @@ public class Level1 extends JComponent {
 			}
 			blocks[i].draw(g);			
 		}
-		blocks[0].translate(blocks[0].getDirectionX()*rand.nextInt(this.getWidth()), blocks[0].getDirectionY()*rand.nextInt(this.getHeight()));
+		blocks[0].translate(input);
 		blocks[0].setDirection();
 	}
 	public void victory() {

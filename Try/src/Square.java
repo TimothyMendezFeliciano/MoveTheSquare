@@ -57,7 +57,7 @@ public class Square {
 	public void draw(Graphics g) {
 
 	}
-	public void translate(int deltax, int deltay) {
+	public void translate(InputHandler input) {
 
 	}
 	public void collide() {

@@ -20,8 +20,7 @@ public class Goal extends Square {
 
 	}
 	
-	public boolean checkWin(PlayerSquare p) {
-		
+	public boolean checkWin(Square p) {
 		return (p.getxPos() == this.getxPos() && p.getyPos() == this.getyPos());
 	}
 

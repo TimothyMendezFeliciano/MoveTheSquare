@@ -3,6 +3,7 @@ import java.awt.Graphics2D;
 import java.util.Random;
 
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 public class Level1 extends JComponent {
 
@@ -10,16 +11,14 @@ public class Level1 extends JComponent {
 	private Square[] blocks;
 	private Random rand = new Random();
 	private int size = 25;
-	private InputHandler input = new InputHandler();
-	
 
 	public Level1(int amount) {
 		this.amount = amount;
 	}
 
 	public void initStage() {
-
-
+		
+		
 		blocks = new Square[amount];
 		int xGoal = (rand.nextInt(32)+1)*size - size;
 		int yGoal = (rand.nextInt(24)+1)*size - size;
@@ -34,6 +33,7 @@ public class Level1 extends JComponent {
 				blocks[i] = new BlockSquare(x, y, 50, 50);
 		}
 		blocks[amount - 1] = new Goal(xGoal, yGoal, size, size );
+		victory();
 	}
 	public void paintComponent(Graphics g) {
 
@@ -42,11 +42,15 @@ public class Level1 extends JComponent {
 				System.out.println("Null i" + i);
 				continue;
 			}
-			blocks[i].draw(g);
-			blocks[0].translate(input);
-			
+			blocks[i].draw(g);			
 		}
-
+		blocks[0].translate(blocks[0].getDirectionX()*rand.nextInt(this.getWidth()), blocks[0].getDirectionY()*rand.nextInt(this.getHeight()));
+		blocks[0].setDirection();
+	}
+	public void victory() {
+		if(blocks[amount - 1].checkWin(blocks[0])) {
+			JOptionPane.showMessageDialog(null,"Congratulations! You Won.","Congrats!!!",JOptionPane.PLAIN_MESSAGE);
+		}
 	}
 
 }
